@@ -21,6 +21,15 @@ namespace BowlingScore
                     return score + roll1;
                 }
 
+                if (roll1 == 10)
+                {
+                    score += 10
+                        + (i + 1 < list.Count ? list[i + 1] : 0)
+                        + (i + 2 < list.Count ? list[i + 2] : 0);
+                    i++;
+                    continue;
+                }
+
                 var frame = roll1 + list[i + 1];
 
                 if (frame == 10)
