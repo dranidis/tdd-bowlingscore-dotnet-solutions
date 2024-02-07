@@ -15,7 +15,7 @@ namespace BowlingScore
                 var roll = list[i];
                 if (roll + previousRoll == 10)
                 {
-                    score += roll + list[i + 1];
+                    score += roll + (i + 1 < list.Count ? list[i + 1] : 0);
                 }
                 else
                 {
