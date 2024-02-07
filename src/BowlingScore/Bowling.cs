@@ -11,8 +11,9 @@ namespace BowlingScore
             var score = 0;
 
             int i = 0;
+            int frameNr = 1;
 
-            while (i < list.Count)
+            while (i < list.Count && frameNr <= 10)
             {
                 var roll1 = list[i];
 
@@ -27,20 +28,22 @@ namespace BowlingScore
                         + (i + 1 < list.Count ? list[i + 1] : 0)
                         + (i + 2 < list.Count ? list[i + 2] : 0);
                     i++;
+                    frameNr++;
                     continue;
                 }
 
-                var frame = roll1 + list[i + 1];
+                var frameScore = roll1 + list[i + 1];
 
-                if (frame == 10)
+                if (frameScore == 10)
                 {
                     score += 10 + (i + 2 < list.Count ? list[i + 2] : 0);
                 }
                 else
                 {
-                    score += frame;
+                    score += frameScore;
                 }
                 i += 2;
+                frameNr++;
             }
 
             return score;
