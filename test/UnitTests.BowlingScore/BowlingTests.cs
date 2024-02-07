@@ -24,6 +24,8 @@ public class BowlingTests
     [DataRow(new int[] { 5, 4, 3 }, 12)]
     [DataRow(new int[] { 5, 5, 3 }, 16)]
     [DataRow(new int[] { 5, 5 }, 10)]
+    [DataRow(new int[] { 3, 5, 5, 2 }, 15)]
+
     public void GetScore_Returns_Expected_Given_Rolls(int[] rolls, int expected)
     {
         // Arrange
