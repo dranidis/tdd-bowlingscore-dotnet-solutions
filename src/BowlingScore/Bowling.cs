@@ -8,10 +8,13 @@ namespace BowlingScore
             if (list.Count == 0)
                 return 0;
 
-            if (list.Count == 1)
-                return list.FirstOrDefault();
+            var score = 0;
+            foreach (var roll in list)
+            {
+                score += roll;
+            }
 
-            return list.First() + list.Last();
+            return score;
         }
     }
 }
