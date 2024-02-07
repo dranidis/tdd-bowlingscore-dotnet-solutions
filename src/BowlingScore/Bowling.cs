@@ -9,9 +9,20 @@ namespace BowlingScore
                 return 0;
 
             var score = 0;
-            foreach (var roll in list)
+            var previousRoll = 0;
+            for (int i = 0; i < list.Count; i++)
             {
-                score += roll;
+                var roll = list[i];
+                if (roll + previousRoll == 10)
+                {
+                    score += roll + list[i + 1];
+                }
+                else
+                {
+                    score += roll;
+                }
+
+                previousRoll = roll; ;
             }
 
             return score;
