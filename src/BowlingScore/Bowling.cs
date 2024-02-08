@@ -1,34 +1,40 @@
 using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
 
 namespace BowlingScore
 {
     public class Bowling
     {
         private readonly List<int> rolls = [];
+        private Frame currentFrame = new();
+        private Frame previousFrame;
+        private readonly List<Frame> frames = [];
+
+        public Bowling()
+        {
+            frames.Add(currentFrame);
+        }
 
         public void Roll(int pins)
         {
-            rolls.Add(pins);
+            currentFrame.AddRoll(pins);
+
+            if (previousFrame != null && previousFrame.IsSpare())
+            {
+                previousFrame.AddBonus(pins);
+            }
+
+            if (currentFrame.IsComplete())
+            {
+                previousFrame = currentFrame;
+                currentFrame = new();
+                frames.Add(currentFrame);
+            }
         }
 
         public int GetScore()
         {
-            var score = 0;
-            var previousRoll = 0;
-            for (var i = 0; i < rolls.Count; i++)
-            {
-                if (rolls[i] + previousRoll == 10)
-                {
-                    score += rolls[i] + (i + 1 < rolls.Count ? rolls[i + 1] : 0);
-                }
-                else
-                {
-                    score += rolls[i];
-                }
-                previousRoll = rolls[i];
-            }
-
-            return score;
+            return frames.Sum(f => f.GetScore());
         }
     }
 }
