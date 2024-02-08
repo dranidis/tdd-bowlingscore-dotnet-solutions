@@ -19,7 +19,7 @@ namespace BowlingScore
             {
                 if (rolls[i] + previousRoll == 10)
                 {
-                    score += rolls[i] + rolls[i + 1];
+                    score += rolls[i] + (i + 1 < rolls.Count ? rolls[i + 1] : 0);
                 }
                 else
                 {
