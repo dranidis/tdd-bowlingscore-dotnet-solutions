@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using BowlingScore;
 
 namespace UnitTests.BowlingScore;
@@ -19,6 +20,8 @@ public class BowlingTests
     [DataRow(new int[] { 5 }, 5)]
     [DataRow(new int[] { 5, 4 }, 9)]
     [DataRow(new int[] { 5, 4, 3 }, 12)]
+    [DataRow(new int[] { 5, 5, 3 }, 16, DisplayName = "Spare")]
+
     public void Given_SomeRolls_Returns_TheCorrectScore(int[] rolls, int expected)
     {
         // Arrange
