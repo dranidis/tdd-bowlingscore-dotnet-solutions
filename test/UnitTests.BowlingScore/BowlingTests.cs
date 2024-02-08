@@ -20,12 +20,27 @@ public class BowlingTests
     {
         // Arrange
         Bowling bowling = new Bowling();
+        bowling.Roll(5);
 
         // Act
-        bowling.Roll(5);
         var score = bowling.GetScore();
 
         // Assert
         Assert.AreEqual(5, score);
+    }
+
+    [TestMethod]
+    public void Given_RollsOf_5_4_GetScore_Returns_9()
+    {
+        // Arrange
+        Bowling bowling = new Bowling();
+        bowling.Roll(5);
+        bowling.Roll(4);
+
+        // Act
+        var score = bowling.GetScore();
+
+        // Assert
+        Assert.AreEqual(9, score);
     }
 }
