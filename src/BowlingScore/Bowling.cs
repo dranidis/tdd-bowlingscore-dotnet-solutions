@@ -25,28 +25,30 @@ namespace BowlingScore
                 if (roll1 == 10)
                 {
                     score += 10
-                        + (i + 1 < list.Count ? list[i + 1] : 0)
-                        + (i + 2 < list.Count ? list[i + 2] : 0);
+                        + GetRoll(i + 1, list)
+                        + GetRoll(i + 2, list);
                     i++;
                     frameNr++;
                     continue;
                 }
 
-                var frameScore = roll1 + list[i + 1];
+                var frameScore = roll1 + list[++i];
+                score += frameScore;
 
                 if (frameScore == 10)
                 {
-                    score += 10 + (i + 2 < list.Count ? list[i + 2] : 0);
+                    score += GetRoll(i + 1, list);
                 }
-                else
-                {
-                    score += frameScore;
-                }
-                i += 2;
+                i++;
                 frameNr++;
             }
 
             return score;
+        }
+
+        private int GetRoll(int i, List<int> list)
+        {
+            return i < list.Count ? list[i] : 0;
         }
     }
 }
