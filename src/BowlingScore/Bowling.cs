@@ -8,6 +8,7 @@ namespace BowlingScore
         private readonly List<int> rolls = [];
         private Frame currentFrame = new();
         private Frame previousFrame;
+        private Frame previousFrame2;
         private readonly List<Frame> frames = [];
 
         public Bowling()
@@ -24,8 +25,14 @@ namespace BowlingScore
                 previousFrame.AddBonus(pins);
             }
 
+            if (previousFrame2 != null && previousFrame2.IsStrike())
+            {
+                previousFrame2.AddBonus(pins);
+            }
+
             if (currentFrame.IsComplete())
             {
+                previousFrame2 = previousFrame;
                 previousFrame = currentFrame;
                 currentFrame = new();
                 frames.Add(currentFrame);

@@ -65,7 +65,7 @@ namespace BowlingScore
         internal bool IsSpare()
         {
             // check for [0 10]
-            return IsComplete() && roll1 + roll2 == 10;
+            return roll1 != 10 && roll1 + roll2 == 10;
         }
 
         internal bool IsStrike()
