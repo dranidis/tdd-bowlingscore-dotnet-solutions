@@ -16,31 +16,21 @@ public class BowlingTests
     }
 
     [TestMethod]
-    public void Given_OneRollOf5_GetScore_Returns_5()
+    [DataRow(new int[] { 5 }, 5)]
+    [DataRow(new int[] { 5, 4 }, 9)]
+    public void Given_SomeRolls_Returns_TheCorrectScore(int[] rolls, int expected)
     {
         // Arrange
-        Bowling bowling = new Bowling();
-        bowling.Roll(5);
+        var bowling = new Bowling();
+        foreach (var roll in rolls)
+        {
+            bowling.Roll(roll);
+        }
 
         // Act
-        var score = bowling.GetScore();
+        var result = bowling.GetScore();
 
         // Assert
-        Assert.AreEqual(5, score);
-    }
-
-    [TestMethod]
-    public void Given_RollsOf_5_4_GetScore_Returns_9()
-    {
-        // Arrange
-        Bowling bowling = new Bowling();
-        bowling.Roll(5);
-        bowling.Roll(4);
-
-        // Act
-        var score = bowling.GetScore();
-
-        // Assert
-        Assert.AreEqual(9, score);
+        Assert.AreEqual(expected, result);
     }
 }
