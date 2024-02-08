@@ -13,13 +13,7 @@ namespace BowlingScore
 
         public int GetScore()
         {
-            if (rolls.Count == 0)
-                return 0;
-
-            if (rolls.Count == 1)
-                return rolls.First();
-
-            return rolls.First() + rolls.Last();
+            return rolls.Sum();
         }
     }
 }

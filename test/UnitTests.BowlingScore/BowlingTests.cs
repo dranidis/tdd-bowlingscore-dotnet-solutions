@@ -18,6 +18,7 @@ public class BowlingTests
     [TestMethod]
     [DataRow(new int[] { 5 }, 5)]
     [DataRow(new int[] { 5, 4 }, 9)]
+    [DataRow(new int[] { 5, 4, 3 }, 12)]
     public void Given_SomeRolls_Returns_TheCorrectScore(int[] rolls, int expected)
     {
         // Arrange
