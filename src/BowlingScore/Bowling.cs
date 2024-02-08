@@ -19,7 +19,7 @@ namespace BowlingScore
         {
             currentFrame.AddRoll(pins);
 
-            if (previousFrame != null && previousFrame.IsSpare())
+            if (previousFrame != null && (previousFrame.IsSpare() || previousFrame.IsStrike()))
             {
                 previousFrame.AddBonus(pins);
             }

@@ -1,5 +1,6 @@
 
 
+
 namespace BowlingScore
 {
     public class Frame
@@ -7,10 +8,25 @@ namespace BowlingScore
         private int roll1 = -1;
         private int roll2 = -1;
         private int bonus1 = -1;
+        private int bonus2 = -1;
 
         internal void AddBonus(int pins)
         {
-            bonus1 = pins;
+            if (IsSpare() && bonus1 == -1)
+            {
+                bonus1 = pins;
+            }
+            else if (IsStrike())
+            {
+                if (bonus1 == -1)
+                {
+                    bonus1 = pins;
+                }
+                else if (bonus2 == -1)
+                {
+                    bonus2 = pins;
+                }
+            }
         }
 
         internal void AddRoll(int pins)
@@ -27,32 +43,43 @@ namespace BowlingScore
 
         internal int GetScore()
         {
-            if (roll1 == -1)
+            if (IsStrike())
             {
-                return 0;
+                return 10 + GetValue(bonus1) + GetValue(bonus2);
             }
 
-            if (roll2 == -1)
+            if (IsSpare())
             {
-                return roll1;
+                return 10 + GetValue(bonus1);
             }
 
-            if (bonus1 != -1)
-            {
-                return roll1 + roll2 + bonus1;
-            }
+            return GetValue(roll1) + GetValue(roll2);
 
-            return roll1 + roll2;
         }
 
         internal bool IsComplete()
         {
-            return roll1 != -1 && roll2 != -1;
+            return roll1 != -1 && roll2 != -1 || IsStrike();
         }
 
         internal bool IsSpare()
         {
+            // check for [0 10]
             return IsComplete() && roll1 + roll2 == 10;
+        }
+
+        internal bool IsStrike()
+        {
+            return roll1 == 10;
+        }
+
+        private int GetValue(int roll)
+        {
+            if (roll == -1)
+            {
+                return 0;
+            }
+            return roll;
         }
     }
 }

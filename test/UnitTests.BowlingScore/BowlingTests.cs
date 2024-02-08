@@ -23,6 +23,7 @@ public class BowlingTests
     [DataRow(new int[] { 5, 5 }, 10, DisplayName = "Spare with no next roll yet")]
     [DataRow(new int[] { 5, 5, 3 }, 16, DisplayName = "Spare")]
     [DataRow(new int[] { 3, 5, 5, 2 }, 15, DisplayName = "No Spare, different frames")]
+    [DataRow(new int[] { 10, 5, 1 }, 22, DisplayName = "Strikes two bonus rolls")]
 
     public void Given_SomeRolls_Returns_TheCorrectScore(int[] rolls, int expected)
     {
